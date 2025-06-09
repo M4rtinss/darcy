@@ -5,59 +5,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz Dia dos Namorados 💘</title>
   <style>
+    :root {
+      --bg-color: linear-gradient(to bottom, #8B0000, #4B0000); /* vermelho escuro vibrante */
+      --text-color: #fff;
+      --box-bg: #ffffff22;
+      --shadow: #880e4f;
+    }
+
+    body.dark {
+      --bg-color: linear-gradient(to bottom, #330000, #000000); /* modo escuro ainda mais escuro */
+      --text-color: #eee;
+      --box-bg: #ffffff11;
+      --shadow: #ff4081;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #ff4e50, #f00045);
+      background: var(--bg-color);
+      color: var(--text-color);
       text-align: center;
-      height: 100vh;
-      box-sizing: border-box;
+      overflow-x: hidden;
     }
 
     h1 {
-      color: #fff;
-      margin-top: 20px;
       font-size: 1.8em;
-      padding: 0 10px;
-      text-shadow: 1px 1px 4px #880e4f;
+      margin-top: 20px;
+      text-shadow: 1px 1px 4px var(--shadow);
+      animation: pulse 2s infinite;
     }
 
-    p {
-      color: #fff;
-      font-size: 1em;
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    p, .contador {
       margin: 10px auto;
       max-width: 90%;
-      text-shadow: 1px 1px 2px #880e4f;
+      text-shadow: 1px 1px 2px var(--shadow);
     }
 
     .contador {
-      font-size: 1em;
-      margin-top: 10px;
       font-weight: bold;
-      color: #fff;
-      text-shadow: 1px 1px 2px #880e4f;
     }
 
-    .fotos {
-      margin: 20px auto;
+    #cliqueParaTocar {
+      animation: piscar 1.5s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes piscar {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .botao, #modoEscuroBtn {
+      margin: 15px 5px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      background: #fff;
+      color: #c2185b;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      transition: background 0.3s ease;
+    }
+
+    .botao:hover, #modoEscuroBtn:hover {
+      background: #ffe5ec;
+    }
+
+    .carrossel {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
       gap: 10px;
-      z-index: 2;
-      position: relative;
-      padding: 0 10px;
+      padding: 15px;
+      margin: auto;
     }
 
-    .fotos img {
-      width: 100px;
-      height: 100px;
-      border-radius: 12px;
+    .carrossel img {
+      flex: 0 0 auto;
+      width: 160px;
+      height: 160px;
       object-fit: cover;
+      border-radius: 15px;
       border: 2px solid #fff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      scroll-snap-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    video {
+      margin: 20px auto;
+      width: 90%;
+      max-width: 480px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      display: block;
     }
 
     .heart {
@@ -67,7 +114,7 @@
       pointer-events: none;
       user-select: none;
       z-index: 1;
-      color: #ffb6c1;
+      color: #ffccd5;
     }
 
     @keyframes cair {
@@ -76,33 +123,41 @@
         opacity: 1;
       }
       100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0.6;
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
       }
     }
 
-    #cliqueParaTocar {
-      font-size: 0.9em;
-      color: #fff;
-      margin-top: 15px;
-      animation: pulse 1.5s infinite;
-      cursor: pointer;
-      text-shadow: 1px 1px 3px #880e4f;
+    .mensagemFinal {
+      margin: 30px auto 60px;
+      font-style: italic;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+    .brilho {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, #ffffff22 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none;
+      z-index: 0;
+      animation: brilhoAnim 30s linear infinite;
+    }
+
+    @keyframes brilhoAnim {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
     }
   </style>
 </head>
 <body>
 
-  <h1>Feliz Dia dos Namorados, meu amor! 💘</h1>
+  <div class="brilho"></div>
 
+  <h1>Feliz Dia dos Namorados 💘</h1>
   <p>
-    Ter você na minha vida é o melhor presente que o destino me deu.<br>
-    Te amo mais a cada dia, e sou grata por cada momento ao seu lado.<br>
+    Ter você na minha vida é o melhor presente que o destino me deu.<br />
+    Te amo mais a cada dia, e sou grata por cada momento ao seu lado.<br />
     Você é meu amor, minha paz e meu lar.
   </p>
 
@@ -110,15 +165,27 @@
 
   <p id="cliqueParaTocar">Toque na tela para ouvir nossa música 🎵</p>
 
-  <div class="fotos">
-    <img src="foto1.jpg" alt="Foto 1">
-    <img src="foto2.jpg" alt="Foto 2">
-    <img src="foto3.jpg" alt="Foto 3">
+  <button id="modoEscuroBtn">🌙 Alternar modo escuro</button>
+
+  <div class="carrossel">
+    <img src="foto1.jpg" alt="Foto 1" />
+    <img src="foto2.jpg" alt="Foto 2" />
+    <img src="foto3.jpg" alt="Foto 3" />
+    <img src="foto4.jpg" alt="Foto 4" />
   </div>
 
+  <button class="botao" onclick="tocarSom(); alert('Você é linda demais! 💕')">Clique para uma surpresa 💝</button>
+
+  <p class="mensagemFinal">🌹 Te amo para sempre... com todo meu coração. 🌹</p>
+
+  <video src="video.mp4" controls></video>
+
   <audio id="musica" loop>
-    <source src="musica.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
+    <source src="musica.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="efeito">
+    <source src="click.mp3" type="audio/mpeg" />
   </audio>
 
   <script>
@@ -158,8 +225,8 @@
         coracao.classList.add("heart");
         coracao.textContent = "💘";
         coracao.style.left = Math.random() * 100 + "vw";
-        coracao.style.fontSize = Math.random() * 18 + 18 + "px";
-        coracao.style.animationDuration = (Math.random() * 5 + 4) + "s";
+        coracao.style.fontSize = Math.random() * 20 + 20 + "px";
+        coracao.style.animationDuration = (Math.random() * 4 + 3) + "s";
         document.body.appendChild(coracao);
         setTimeout(() => coracao.remove(), 10000);
       }
@@ -167,21 +234,39 @@
       setInterval(criarCoracao, 250);
 
       const musica = document.getElementById("musica");
+      const video = document.querySelector("video");
       musica.volume = 0.5;
 
       function tocarMusica() {
         musica.play().then(() => {
           document.getElementById("cliqueParaTocar").style.display = "none";
-        }).catch((err) => {
-          alert("Clique novamente para ativar a música!");
-          console.error(err);
-        });
+        }).catch(() => {});
         document.removeEventListener("click", tocarMusica);
       }
 
       document.addEventListener("click", tocarMusica);
-    });
-  </script>
 
+      // Pausar música ao tocar vídeo
+      video.addEventListener("play", () => {
+        musica.pause();
+      });
+
+      // Retomar música ao pausar vídeo
+      video.addEventListener("pause", () => {
+        musica.play().catch(() => {});
+      });
+
+      document.getElementById("modoEscuroBtn").addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        tocarSom();
+      });
+    });
+
+    function tocarSom() {
+      const efeito = document.getElementById("efeito");
+      efeito.currentTime = 0;
+      efeito.play().catch(() => {});
+    }
+  </script>
 </body>
 </html>
