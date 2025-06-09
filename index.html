@@ -6,14 +6,14 @@
   <title>Feliz Dia dos Namorados 💘</title>
   <style>
     :root {
-      --bg-color: linear-gradient(to bottom, #8B0000, #4B0000); /* vermelho escuro vibrante */
+      --bg-color: linear-gradient(to bottom, #8B0000, #4B0000);
       --text-color: #fff;
       --box-bg: #ffffff22;
       --shadow: #880e4f;
     }
 
     body.dark {
-      --bg-color: linear-gradient(to bottom, #330000, #000000); /* modo escuro ainda mais escuro */
+      --bg-color: linear-gradient(to bottom, #330000, #000000);
       --text-color: #eee;
       --box-bg: #ffffff11;
       --shadow: #ff4081;
@@ -114,7 +114,7 @@
       pointer-events: none;
       user-select: none;
       z-index: 1;
-      color: #ffccd5;
+      color: red;
     }
 
     @keyframes cair {
@@ -148,6 +148,40 @@
       0% { background-position: 0 0; }
       100% { background-position: 100px 100px; }
     }
+
+    .pergaminho {
+      background: #fdf6e3;
+      border: 1px solid #d2b48c;
+      padding: 20px;
+      margin: 40px auto;
+      max-width: 90%;
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      color: #4b2e1e;
+      box-shadow: inset 0 0 15px #d2b48c, 0 0 30px rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      position: relative;
+    }
+
+    .pergaminho::before,
+    .pergaminho::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(0,0,0,0.05);
+      transform: rotate(45deg);
+    }
+
+    .pergaminho::before {
+      top: -10px;
+      left: -10px;
+    }
+
+    .pergaminho::after {
+      bottom: -10px;
+      right: -10px;
+    }
   </style>
 </head>
 <body>
@@ -179,6 +213,20 @@
   <p class="mensagemFinal">🌹 Te amo para sempre... com todo meu coração. 🌹</p>
 
   <video src="video.mp4" controls></video>
+
+  <div class="pergaminho">
+    <h2>Como tudo começou</h2>
+    <p>
+      Nos conhecemos ainda pequenos, com apenas 5 anos no Infantil 5.<br>
+      A vida foi nos unindo aos poucos, entre brincadeiras, risadas e momentos inocentes.<br>
+      No 3º ano, nossa amizade cresceu e virou algo mais — um sentimento novo, bonito, verdadeiro.<br>
+      Foi nesse tempo que rolou nosso primeiro beijo, tímido e puro, mas que ficou marcado no meu coração.<br>
+      O tempo passou, mas aquela chama nunca apagou. Ela cresceu, assim como o carinho e o amor entre nós.<br>
+      E aqui estamos hoje, celebrando tudo que construímos lado a lado.
+    </p>
+  </div>
+
+  <a href="filhos.html"><button class="botao">➡️ Próxima surpresa</button></a>
 
   <audio id="musica" loop>
     <source src="musica.mp3" type="audio/mpeg" />
@@ -223,7 +271,7 @@
       function criarCoracao() {
         const coracao = document.createElement("div");
         coracao.classList.add("heart");
-        coracao.textContent = "💘";
+        coracao.textContent = "❤️";
         coracao.style.left = Math.random() * 100 + "vw";
         coracao.style.fontSize = Math.random() * 20 + 20 + "px";
         coracao.style.animationDuration = (Math.random() * 4 + 3) + "s";
@@ -246,12 +294,10 @@
 
       document.addEventListener("click", tocarMusica);
 
-      // Pausar música ao tocar vídeo
       video.addEventListener("play", () => {
         musica.pause();
       });
 
-      // Retomar música ao pausar vídeo
       video.addEventListener("pause", () => {
         musica.play().catch(() => {});
       });

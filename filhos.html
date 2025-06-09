@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perguntinha</title>
+  <style>
+    :root {
+      --bg-color: linear-gradient(to bottom, #8B0000, #4B0000);
+      --text-color: #fff;
+      --shadow: #880e4f;
+      --botao-bg: #fff;
+      --botao-cor: #c2185b;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      margin: 0;
+      padding: 50px 20px;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 4px var(--shadow);
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 20px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      transition: 0.2s;
+    }
+
+    .sim {
+      background-color: var(--botao-bg);
+      color: var(--botao-cor);
+    }
+
+    .sim:hover {
+      background: #ffe5ec;
+    }
+
+    .nao {
+      background-color: #ffffff33;
+      color: #ddd;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <h1>Você aceita ter 10 filhos comigo? 👶❤️</h1>
+
+  <button class="sim" onclick="alert('Oba!!! Vamos começar 😍')">Sim</button>
+  <button class="nao" id="btnNao">Não</button>
+
+  <script>
+    const btnNao = document.getElementById('btnNao');
+    function moverBotao() {
+      const largura = window.innerWidth - btnNao.offsetWidth;
+      const altura = window.innerHeight - btnNao.offsetHeight;
+      const novaEsq = Math.random() * largura;
+      const novoTopo = Math.random() * altura;
+      btnNao.style.left = novaEsq + 'px';
+      btnNao.style.top = novoTopo + 'px';
+    }
+
+    btnNao.addEventListener('mouseenter', moverBotao);
+    btnNao.addEventListener('click', moverBotao);
+  </script>
+</body>
+</html>
